@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class AnimatorSetup
 {
@@ -20,7 +19,7 @@ public class AnimatorSetup
 	{
 		float angleSpeed = angle / angleResponseTime;
 
-		anim.SetFloat (hash.speedFloat, speed, speedDampTime, Time.deltaTime);
-		anim.SetFloat (hash.angularSpeedFloat, angleSpeed, angularSpeedDampTime, Time.deltaTime);
+		anim.SetFloat(hash.speedFloat, speed, speedDampTime, Time.deltaTime);
+		anim.SetFloat(hash.angularSpeedFloat, angleSpeed, angularSpeedDampTime, Time.deltaTime);
 	}
 }

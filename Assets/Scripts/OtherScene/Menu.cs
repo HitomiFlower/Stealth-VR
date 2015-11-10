@@ -1,27 +1,26 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class Menu : MonoBehaviour {
-
+public class Menu : MonoBehaviour
+{
 	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-	void OnGUI()
+	private void Start()
 	{
-		if(GUI.Button (new Rect(220,300,60,30), "Exit"))
-		{
-			Application.Quit ();
-		}
-		if (GUI.Button (new Rect (350, 300, 60, 30), "Start")) {
-			Application.LoadLevel("Shoot");	
+	}
 
+	// Update is called once per frame
+	private void Update()
+	{
+	}
+
+	private void OnGUI()
+	{
+		if (GUI.Button(new Rect(220, 300, 60, 30), "Exit"))
+		{
+			Application.Quit();
+		}
+		if (GUI.Button(new Rect(350, 300, 60, 30), "Start"))
+		{
+			Application.LoadLevel("Shoot");
 		}
 	}
 }

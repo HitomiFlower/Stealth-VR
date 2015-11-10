@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class HashIDs : MonoBehaviour 
+public class HashIDs : MonoBehaviour
 {
 	public int dyingState;
 	public int locomotionState;
@@ -15,9 +14,8 @@ public class HashIDs : MonoBehaviour
 	public int aimWeightFloat;
 	public int angularSpeedFloat;
 	public int openBool;
-	
-	
-	void Awake ()
+
+	private void Awake()
 	{
 		dyingState = Animator.StringToHash("Base Layer.Dying");
 		locomotionState = Animator.StringToHash("Base Layer.Locomotion");

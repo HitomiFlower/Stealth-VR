@@ -1,29 +1,28 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class LaserBlinking : MonoBehaviour 
+public class LaserBlinking : MonoBehaviour
 {
 	public float onTime;
 	public float offTime;
 
 	private float timer;
 
-	void Update()
+	private void Update()
 	{
 		timer += Time.deltaTime;
 
-		if(GetComponent<Renderer>().enabled && timer >= onTime)
+		if (GetComponent<Renderer>().enabled && timer >= onTime)
 		{
-			SwitchBeam ();
+			SwitchBeam();
 		}
 
-		if(!GetComponent<Renderer>().enabled && timer >= offTime)
+		if (!GetComponent<Renderer>().enabled && timer >= offTime)
 		{
 			SwitchBeam();
 		}
 	}
 
-	void SwitchBeam()
+	private void SwitchBeam()
 	{
 		timer = 0f;
 

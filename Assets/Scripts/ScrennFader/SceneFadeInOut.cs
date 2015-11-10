@@ -1,41 +1,39 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class SceneFadeInOut : MonoBehaviour 
+public class SceneFadeInOut : MonoBehaviour
 {
 	public float fadeSpeed = 1.5f;
 
 	private bool sceneStarting = true;
 
-	void Awake()
+	private void Awake()
 	{
-		GetComponent<GUITexture>().pixelInset = new Rect (0f, 0f, Screen.width, Screen.height);
+		GetComponent<GUITexture>().pixelInset = new Rect(0f, 0f, Screen.width, Screen.height);
 	}
 
-	void Update()
+	private void Update()
 	{
-		if(sceneStarting)
+		if (sceneStarting)
 		{
 			StartScene();
 		}
-
 	}
 
-	void FadeToClear()
+	private void FadeToClear()
 	{
-		GetComponent<GUITexture>().color = Color.Lerp (GetComponent<GUITexture>().color, Color.clear, fadeSpeed * Time.deltaTime);
+		GetComponent<GUITexture>().color = Color.Lerp(GetComponent<GUITexture>().color, Color.clear, fadeSpeed * Time.deltaTime);
 	}
 
-	void FadeToBlack()
+	private void FadeToBlack()
 	{
-		GetComponent<GUITexture>().color = Color.Lerp (GetComponent<GUITexture>().color, Color.black, fadeSpeed * Time.deltaTime);
+		GetComponent<GUITexture>().color = Color.Lerp(GetComponent<GUITexture>().color, Color.black, fadeSpeed * Time.deltaTime);
 	}
 
-	void StartScene()
+	private void StartScene()
 	{
-		FadeToClear ();
+		FadeToClear();
 
-		if(GetComponent<GUITexture>().color.a <= 0.05f)
+		if (GetComponent<GUITexture>().color.a <= 0.05f)
 		{
 			GetComponent<GUITexture>().color = Color.clear;
 			GetComponent<GUITexture>().enabled = false;
@@ -46,9 +44,9 @@ public class SceneFadeInOut : MonoBehaviour
 	public void EndScene()
 	{
 		GetComponent<GUITexture>().enabled = true;
-		FadeToBlack ();
-		
-		if(GetComponent<GUITexture>().color.a >= 0.95f)
+		FadeToBlack();
+
+		if (GetComponent<GUITexture>().color.a >= 0.95f)
 		{
 			Application.LoadLevel(0);
 		}

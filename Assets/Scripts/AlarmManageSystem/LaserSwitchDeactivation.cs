@@ -1,35 +1,34 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class LaserSwitchDeactivation : MonoBehaviour 
+public class LaserSwitchDeactivation : MonoBehaviour
 {
 	public GameObject laser;
 	public Material unlockedMat;
 
 	private GameObject player;
 
-	void Awake()
+	private void Awake()
 	{
-		player = GameObject.FindGameObjectWithTag (Tags.player);
+		player = GameObject.FindGameObjectWithTag(Tags.player);
 	}
 
-	void OnTriggerStay(Collider other)
+	private void OnTriggerStay(Collider other)
 	{
-		if(other.gameObject == player)
+		if (other.gameObject == player)
 		{
-			if(Input.GetButton ("Switch"))
+			if (Input.GetButton("Switch"))
 			{
 				LaserDeactivation();
 			}
 		}
 	}
 
-	void LaserDeactivation()
+	private void LaserDeactivation()
 	{
-		laser.SetActive (false);
+		laser.SetActive(false);
 
-		Renderer screen = transform.Find ("prop_switchUnit_screen_001").GetComponent<Renderer>();
+		Renderer screen = transform.Find("prop_switchUnit_screen_001").GetComponent<Renderer>();
 		screen.material = unlockedMat;
-		GetComponent<AudioSource>().Play ();
+		GetComponent<AudioSource>().Play();
 	}
 }

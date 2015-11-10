@@ -1,26 +1,25 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class KeyPickUp : MonoBehaviour 
+public class KeyPickUp : MonoBehaviour
 {
 	public AudioClip grabClip;
 
 	private GameObject player;
 	private PlayerInventory playerInventory;
 
-	void Awake()
+	private void Awake()
 	{
-		player = GameObject.FindGameObjectWithTag (Tags.player);
-		playerInventory = player.GetComponent<PlayerInventory> ();
+		player = GameObject.FindGameObjectWithTag(Tags.player);
+		playerInventory = player.GetComponent<PlayerInventory>();
 	}
 
-	void OnTriggerEnter(Collider other)
+	private void OnTriggerEnter(Collider other)
 	{
-		if(other.gameObject == player)
+		if (other.gameObject == player)
 		{
 			AudioSource.PlayClipAtPoint(grabClip, transform.position);
 			playerInventory.hasKey = true;
-			Destroy (gameObject);
+			Destroy(gameObject);
 		}
 	}
 }

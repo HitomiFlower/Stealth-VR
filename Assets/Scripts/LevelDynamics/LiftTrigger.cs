@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class LiftTrigger : MonoBehaviour 
+public class LiftTrigger : MonoBehaviour
 {
 	public float timeToDoorsClose = 2f;
 	public float timeToLiftStart = 3f;
@@ -17,41 +16,41 @@ public class LiftTrigger : MonoBehaviour
 	private bool playerInLift;
 	private float timer;
 
-	void Awake()
+	private void Awake()
 	{
-		player = GameObject.FindGameObjectWithTag (Tags.player);
-		playerAnim = player.GetComponent<Animator> ();
-		hash = GameObject.FindGameObjectWithTag (Tags.gameConstroller).GetComponent<HashIDs> ();
-		cameraMovement = Camera.main.gameObject.GetComponent<CameraMovement> ();
-		sceneFadeInOut = GameObject.FindGameObjectWithTag (Tags.fader).GetComponent<SceneFadeInOut> ();
-		liftDoorTracking = GetComponent<LiftDoorTracking> ();
+		player = GameObject.FindGameObjectWithTag(Tags.player);
+		playerAnim = player.GetComponent<Animator>();
+		hash = GameObject.FindGameObjectWithTag(Tags.gameConstroller).GetComponent<HashIDs>();
+		cameraMovement = Camera.main.gameObject.GetComponent<CameraMovement>();
+		sceneFadeInOut = GameObject.FindGameObjectWithTag(Tags.fader).GetComponent<SceneFadeInOut>();
+		liftDoorTracking = GetComponent<LiftDoorTracking>();
 	}
 
-	void OnTriggerEnter(Collider other)
+	private void OnTriggerEnter(Collider other)
 	{
-		if(other.gameObject == player)
+		if (other.gameObject == player)
 		{
 			playerInLift = true;
 		}
 	}
 
-	void OnTriggerExit(Collider other)
+	private void OnTriggerExit(Collider other)
 	{
-		if(other.gameObject == player)
+		if (other.gameObject == player)
 		{
 			playerInLift = false;
 			timer = 0f;
 		}
 	}
 
-	void Update()
+	private void Update()
 	{
-		if(playerInLift)
+		if (playerInLift)
 		{
 			ListActivation();
 		}
 
-		if(timer < timeToDoorsClose)
+		if (timer < timeToDoorsClose)
 		{
 			liftDoorTracking.DoorFollowing();
 		}
@@ -61,24 +60,24 @@ public class LiftTrigger : MonoBehaviour
 		}
 	}
 
-	void ListActivation()
+	private void ListActivation()
 	{
 		timer += Time.deltaTime;
-		
-		if(timer >= timeToLiftStart)
+
+		if (timer >= timeToLiftStart)
 		{
 			playerAnim.SetFloat(hash.speedFloat, 0f);
 			player.transform.parent = transform;
 			cameraMovement.enabled = false;
-			
+
 			transform.Translate(Vector3.up * liftSpeed * Time.deltaTime);
-			
-			if(!GetComponent<AudioSource>().isPlaying)
+
+			if (!GetComponent<AudioSource>().isPlaying)
 			{
 				GetComponent<AudioSource>().Play();
 			}
-			
-			if(timer >= timeToEndLevel)
+
+			if (timer >= timeToEndLevel)
 			{
 				sceneFadeInOut.EndScene();
 			}

@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class EnemyShooting : MonoBehaviour 
+public class EnemyShooting : MonoBehaviour
 {
 	public float maximumDamage = 120f;
 	public float minimumDamage = 45f;
@@ -19,15 +18,15 @@ public class EnemyShooting : MonoBehaviour
 	private bool shooting;
 	private float scaledDamage;
 
-	void Awake()
+	private void Awake()
 	{
-		anim = GetComponent<Animator> ();
-		hash = GameObject.FindGameObjectWithTag (Tags.gameConstroller).GetComponent<HashIDs> ();
-		laserShotLine = GetComponentInChildren<LineRenderer> ();
+		anim = GetComponent<Animator>();
+		hash = GameObject.FindGameObjectWithTag(Tags.gameConstroller).GetComponent<HashIDs>();
+		laserShotLine = GetComponentInChildren<LineRenderer>();
 		laserShotLight = laserShotLine.gameObject.GetComponent<Light>();
-		col = GetComponent<SphereCollider> ();
-		player = GameObject.FindGameObjectWithTag (Tags.player).transform;
-		playerHealth = player.gameObject.GetComponent<PlayerHealth> ();
+		col = GetComponent<SphereCollider>();
+		player = GameObject.FindGameObjectWithTag(Tags.player).transform;
+		playerHealth = player.gameObject.GetComponent<PlayerHealth>();
 
 		laserShotLine.enabled = false;
 		laserShotLight.intensity = 0f;
@@ -35,47 +34,47 @@ public class EnemyShooting : MonoBehaviour
 		scaledDamage = maximumDamage - minimumDamage;
 	}
 
-	void Update()
+	private void Update()
 	{
-		float shot = anim.GetFloat (hash.shotFloat);
+		float shot = anim.GetFloat(hash.shotFloat);
 
-		if(shot > 0.5f && !shooting)
+		if (shot > 0.5f && !shooting)
 		{
-			Shoot ();
+			Shoot();
 		}
 
-		if(shot < 0.5f)
+		if (shot < 0.5f)
 		{
 			shooting = false;
 			laserShotLine.enabled = false;
 		}
 
-		laserShotLight.intensity = Mathf.Lerp (laserShotLight.intensity, 0f, fadeSpeed * Time.deltaTime);
+		laserShotLight.intensity = Mathf.Lerp(laserShotLight.intensity, 0f, fadeSpeed * Time.deltaTime);
 	}
 
-	void OnAnimatorIK(int layerIndex)
+	private void OnAnimatorIK(int layerIndex)
 	{
-		float aimWeight = anim.GetFloat (hash.aimWeightFloat);
-		anim.SetIKPosition (AvatarIKGoal.RightHand, player.position + Vector3.up * 1.5f);
-		anim.SetIKPositionWeight (AvatarIKGoal.RightHand, aimWeight);
+		float aimWeight = anim.GetFloat(hash.aimWeightFloat);
+		anim.SetIKPosition(AvatarIKGoal.RightHand, player.position + Vector3.up * 1.5f);
+		anim.SetIKPositionWeight(AvatarIKGoal.RightHand, aimWeight);
 	}
 
-	void Shoot()
+	private void Shoot()
 	{
 		shooting = true;
-		float fractionDistance = (col.radius - Vector3.Distance (transform.position, player.position)) / col.radius;
+		float fractionDistance = (col.radius - Vector3.Distance(transform.position, player.position)) / col.radius;
 		scaledDamage = scaledDamage * fractionDistance + minimumDamage;
-		playerHealth.TakeDamage (scaledDamage);
+		playerHealth.TakeDamage(scaledDamage);
 
-		ShotEffects ();
+		ShotEffects();
 	}
 
-	void ShotEffects()
+	private void ShotEffects()
 	{
-		laserShotLine.SetPosition (0, laserShotLine.transform.position);
-		laserShotLine.SetPosition (1, player.position + Vector3.up * 1.5f);
+		laserShotLine.SetPosition(0, laserShotLine.transform.position);
+		laserShotLine.SetPosition(1, player.position + Vector3.up * 1.5f);
 		laserShotLine.enabled = true;
 		laserShotLight.intensity = flashIntensity;
-		AudioSource.PlayClipAtPoint (shotClip, laserShotLine.transform.position);
+		AudioSource.PlayClipAtPoint(shotClip, laserShotLine.transform.position);
 	}
 }

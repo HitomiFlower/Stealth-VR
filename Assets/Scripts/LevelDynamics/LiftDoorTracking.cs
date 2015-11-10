@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class LiftDoorTracking : MonoBehaviour 
+public class LiftDoorTracking : MonoBehaviour
 {
 	public float doorSpeed = 7f;
 
@@ -12,7 +11,7 @@ public class LiftDoorTracking : MonoBehaviour
 	private float leftClosedPosX;
 	private float rightClosedPosX;
 
-	void Awake()
+	private void Awake()
 	{
 		leftOuterDoor = GameObject.Find("door_exit_outer_left_001").transform;
 		rightOuterDoor = GameObject.Find("door_exit_outer_right_001").transform;
@@ -23,22 +22,22 @@ public class LiftDoorTracking : MonoBehaviour
 		rightClosedPosX = rightInnerDoor.position.x;
 	}
 
-	void MoveDoors(float newLeftXTarget, float newRightXTarget)
+	private void MoveDoors(float newLeftXTarget, float newRightXTarget)
 	{
-		float newX = Mathf.Lerp (leftInnerDoor.position.x, newLeftXTarget, doorSpeed * Time.deltaTime);
-		leftInnerDoor.position = new Vector3 (newX, leftInnerDoor.position.y, leftInnerDoor.position.z);
+		float newX = Mathf.Lerp(leftInnerDoor.position.x, newLeftXTarget, doorSpeed * Time.deltaTime);
+		leftInnerDoor.position = new Vector3(newX, leftInnerDoor.position.y, leftInnerDoor.position.z);
 
 		newX = Mathf.Lerp(rightInnerDoor.position.x, newRightXTarget, doorSpeed * Time.deltaTime);
-		rightInnerDoor.position = new Vector3 (newX, rightInnerDoor.position.y, rightInnerDoor.position.z);
+		rightInnerDoor.position = new Vector3(newX, rightInnerDoor.position.y, rightInnerDoor.position.z);
 	}
 
 	public void DoorFollowing()
 	{
-		MoveDoors (leftOuterDoor.position.x, rightOuterDoor.position.x);
+		MoveDoors(leftOuterDoor.position.x, rightOuterDoor.position.x);
 	}
 
 	public void DoorClose()
 	{
-		MoveDoors (leftClosedPosX, rightClosedPosX);
+		MoveDoors(leftClosedPosX, rightClosedPosX);
 	}
 }

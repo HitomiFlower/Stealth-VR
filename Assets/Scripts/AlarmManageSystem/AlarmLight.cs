@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class AlarmLight : MonoBehaviour {
-
+public class AlarmLight : MonoBehaviour
+{
 	public float fadeSpeed = 2f;
 	public float lowIntensity = 0.5f;
 	public float highIntensity = 2f;
@@ -11,30 +10,30 @@ public class AlarmLight : MonoBehaviour {
 
 	private float targetIntensity;
 
-	void Awake()
+	private void Awake()
 	{
 		GetComponent<Light>().intensity = 0f;
 		targetIntensity = highIntensity;
 	}
 
-	void Update()
+	private void Update()
 	{
-		if(alarmOn)
+		if (alarmOn)
 		{
-			GetComponent<Light>().intensity = Mathf.Lerp (GetComponent<Light>().intensity, targetIntensity, fadeSpeed * Time.deltaTime);
+			GetComponent<Light>().intensity = Mathf.Lerp(GetComponent<Light>().intensity, targetIntensity, fadeSpeed * Time.deltaTime);
 			CheckTargetIntensity();
 		}
 		else
 		{
-			GetComponent<Light>().intensity = Mathf.Lerp (GetComponent<Light>().intensity, 0f, fadeSpeed * Time.deltaTime);
+			GetComponent<Light>().intensity = Mathf.Lerp(GetComponent<Light>().intensity, 0f, fadeSpeed * Time.deltaTime);
 		}
 	}
 
-	void CheckTargetIntensity()
+	private void CheckTargetIntensity()
 	{
-		if(Mathf.Abs(targetIntensity - GetComponent<Light>().intensity) < changeMargin)
+		if (Mathf.Abs(targetIntensity - GetComponent<Light>().intensity) < changeMargin)
 		{
-			if(targetIntensity == highIntensity)
+			if (targetIntensity == highIntensity)
 			{
 				targetIntensity = lowIntensity;
 			}

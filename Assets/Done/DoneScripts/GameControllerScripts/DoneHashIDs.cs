@@ -1,10 +1,10 @@
 using UnityEngine;
-using System.Collections;
 
 public class DoneHashIDs : MonoBehaviour
 {
 	// Here we store the hash tags for various strings used in our animators.
 	public int dyingState;
+
 	public int locomotionState;
 	public int shoutState;
 	public int deadBool;
@@ -14,11 +14,10 @@ public class DoneHashIDs : MonoBehaviour
 	public int playerInSightBool;
 	public int shotFloat;
 	public int aimWeightFloat;
-    public int angularSpeedFloat;
+	public int angularSpeedFloat;
 	public int openBool;
-	
-	
-	void Awake ()
+
+	private void Awake()
 	{
 		dyingState = Animator.StringToHash("Base Layer.Dying");
 		locomotionState = Animator.StringToHash("Base Layer.Locomotion");
@@ -30,7 +29,7 @@ public class DoneHashIDs : MonoBehaviour
 		playerInSightBool = Animator.StringToHash("PlayerInSight");
 		shotFloat = Animator.StringToHash("Shot");
 		aimWeightFloat = Animator.StringToHash("AimWeight");
-        angularSpeedFloat = Animator.StringToHash("AngularSpeed");
+		angularSpeedFloat = Animator.StringToHash("AngularSpeed");
 		openBool = Animator.StringToHash("Open");
 	}
 }

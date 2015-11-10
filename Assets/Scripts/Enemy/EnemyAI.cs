@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class EnemyAI : MonoBehaviour 
+public class EnemyAI : MonoBehaviour
 {
 	public float patrolSpeed = 2f;
 	public float chaseSpeed = 5f;
@@ -19,7 +18,7 @@ public class EnemyAI : MonoBehaviour
 	private float chaseTimer;
 	private int wayPointIndex;
 
-	void Awake()
+	private void Awake()
 	{
 		enemySight = GetComponent<EnemySight>();
 		nav = GetComponent<NavMeshAgent>();
@@ -28,13 +27,13 @@ public class EnemyAI : MonoBehaviour
 		lastPlayerSighting = GameObject.FindGameObjectWithTag(Tags.gameConstroller).GetComponent<LastPlayerSighting>();
 	}
 
-	void Update()
+	private void Update()
 	{
-		if(enemySight.playerInSight && playerHealth.health > 0f)
+		if (enemySight.playerInSight && playerHealth.health > 0f)
 		{
 			Shooting();
 		}
-		else if(enemySight.personalLastSighting != lastPlayerSighting.resetPosition && playerHealth.health > 0f)
+		else if (enemySight.personalLastSighting != lastPlayerSighting.resetPosition && playerHealth.health > 0f)
 		{
 			Chasing();
 		}
@@ -44,26 +43,26 @@ public class EnemyAI : MonoBehaviour
 		}
 	}
 
-	void Shooting()
+	private void Shooting()
 	{
 		nav.Stop();
 	}
 
-	void Chasing()
+	private void Chasing()
 	{
 		Vector3 sightingPosDelta = enemySight.personalLastSighting - transform.position;
-		if(sightingPosDelta.sqrMagnitude > 4f)
+		if (sightingPosDelta.sqrMagnitude > 4f)
 		{
 			nav.destination = enemySight.personalLastSighting;
 		}
 
 		nav.speed = chaseSpeed;
 
-		if(nav.remainingDistance < nav.stoppingDistance)
+		if (nav.remainingDistance < nav.stoppingDistance)
 		{
 			chaseTimer += Time.deltaTime;
 
-			if(chaseTimer > chaseWaitTime)
+			if (chaseTimer > chaseWaitTime)
 			{
 				lastPlayerSighting.position = lastPlayerSighting.resetPosition;
 				enemySight.personalLastSighting = lastPlayerSighting.resetPosition;
@@ -76,17 +75,17 @@ public class EnemyAI : MonoBehaviour
 		}
 	}
 
-	void Patrolling()
+	private void Patrolling()
 	{
 		nav.speed = patrolSpeed;
 
-		if(nav.destination == lastPlayerSighting.resetPosition || nav.remainingDistance < nav.stoppingDistance)
+		if (nav.destination == lastPlayerSighting.resetPosition || nav.remainingDistance < nav.stoppingDistance)
 		{
 			patrolTimer += Time.deltaTime;
 
-			if(patrolTimer > patrolWaitTime)
+			if (patrolTimer > patrolWaitTime)
 			{
-				if(wayPointIndex == patrolWayPoints.Length - 1)
+				if (wayPointIndex == patrolWayPoints.Length - 1)
 				{
 					wayPointIndex = 0;
 				}

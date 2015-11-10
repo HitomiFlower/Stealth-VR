@@ -1,22 +1,21 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class LaserPlayerDetection : MonoBehaviour 
+public class LaserPlayerDetection : MonoBehaviour
 {
 	private GameObject player;
 	private LastPlayerSighting lastPlayerSighting;
 
-	void Awake()
+	private void Awake()
 	{
-		player = GameObject.FindGameObjectWithTag (Tags.player);
-		lastPlayerSighting = GameObject.FindGameObjectWithTag (Tags.gameConstroller).GetComponent<LastPlayerSighting> ();
+		player = GameObject.FindGameObjectWithTag(Tags.player);
+		lastPlayerSighting = GameObject.FindGameObjectWithTag(Tags.gameConstroller).GetComponent<LastPlayerSighting>();
 	}
 
-	void OnTriggerEnter(Collider other)
+	private void OnTriggerEnter(Collider other)
 	{
-		if(GetComponent<Renderer>().enabled)
+		if (GetComponent<Renderer>().enabled)
 		{
-			if(other.gameObject == player)
+			if (other.gameObject == player)
 			{
 				lastPlayerSighting.position = player.transform.position;
 			}
