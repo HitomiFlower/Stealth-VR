@@ -57,13 +57,13 @@ public class EnemySight : MonoBehaviour
 			playerInSight = false;
 
 			Vector3 direction = other.transform.position - transform.position;
-			float angle = Vector3.Angle(direction, Vector3.forward);
+			float angle = Vector3.Angle(direction, transform.forward);
 
 			if (angle < fieldOfViewAngle * 0.5f)
 			{
 				RaycastHit hit;
-				Debug.Log("Raycast to scan the player");
-				if (Physics.Raycast(transform.position + Vector3.up, direction.normalized, out hit, col.radius))
+
+				if (Physics.Raycast(transform.position + transform.up, direction.normalized, out hit, col.radius))
 				{
 					if (hit.collider.gameObject == player)
 					{
@@ -73,15 +73,16 @@ public class EnemySight : MonoBehaviour
 				}
 			}
 
-			int playerLayerZeroHash = playerAnim.GetCurrentAnimatorStateInfo(0).nameHash;
-			int playerLayerOneHash = playerAnim.GetCurrentAnimatorStateInfo(1).nameHash;
+			int playerLayerZeroHash = playerAnim.GetCurrentAnimatorStateInfo(0).fullPathHash;
+			int playerLayerOneHash = playerAnim.GetCurrentAnimatorStateInfo(1).fullPathHash;
 
 			if (playerLayerZeroHash == hash.locomotionState || playerLayerOneHash == hash.shoutState)
 			{
-				Debug.Log("Player into the Collider!");
+				
 				if (CalculatePathLength(player.transform.position) <= col.radius)
 				{
 					personalLastSighting = player.transform.position;
+					Debug.Log("Personal Last Sighting Updated");
 				}
 			}
 		}
