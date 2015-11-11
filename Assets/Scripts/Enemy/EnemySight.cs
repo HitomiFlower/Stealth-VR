@@ -33,7 +33,7 @@ public class EnemySight : MonoBehaviour
 
 	private void Update()
 	{
-		if (lastPlayerSighting.position != personalLastSighting)
+		if (lastPlayerSighting.position != previousSighting)
 		{
 			personalLastSighting = lastPlayerSighting.position;
 		}
@@ -62,7 +62,7 @@ public class EnemySight : MonoBehaviour
 			if (angle < fieldOfViewAngle * 0.5f)
 			{
 				RaycastHit hit;
-
+				Debug.Log("Raycast to scan the player");
 				if (Physics.Raycast(transform.position + Vector3.up, direction.normalized, out hit, col.radius))
 				{
 					if (hit.collider.gameObject == player)
@@ -78,6 +78,7 @@ public class EnemySight : MonoBehaviour
 
 			if (playerLayerZeroHash == hash.locomotionState || playerLayerOneHash == hash.shoutState)
 			{
+				Debug.Log("Player into the Collider!");
 				if (CalculatePathLength(player.transform.position) <= col.radius)
 				{
 					personalLastSighting = player.transform.position;
