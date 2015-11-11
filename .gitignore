@@ -1,0 +1,8 @@
+
+Library/AnnotationManager
+
+Library/AssetServerCacheV3
+
+Library/**/*
+
+Temp/**/*

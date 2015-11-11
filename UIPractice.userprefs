@@ -2,18 +2,17 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Done/DoneScripts/EnemyScripts/DoneEnemyAnimation.cs">
     <Files>
-      <File FileName="Assets/Scripts/Enemy/EnemySight.cs" Line="40" Column="1" />
-      <File FileName="Assets/Scripts/Enemy/EnemyAI.cs" Line="47" Column="17" />
-      <File FileName="Assets/Scripts/GameController/LastPlayerSighting.cs" Line="20" Column="1" />
-      <File FileName="Assets/Scripts/Player/PlayerHealth.cs" Line="52" Column="54" />
-      <File FileName="Assets/Scripts/Player/PlayerMovement.cs" Line="62" Column="50" />
-      <File FileName="Assets/Scripts/Enemy/EnemyShooting.cs" Line="58" Column="55" />
-      <File FileName="Assets/Scripts/Enemy/EnemyAnimation.cs" Line="33" Column="3" />
-      <File FileName="Assets/Scripts/GameController/HashIDs.cs" Line="20" Column="15" />
-      <File FileName="Assets/Scripts/LevelDynamics/DoorAnimation.cs" Line="56" Column="76" />
-      <File FileName="Assets/Scripts/LevelDynamics/LiftTrigger.cs" Line="64" Column="8" />
-      <File FileName="Assets/Scripts/Unapplied/AnimatorSetup.cs" Line="13" Column="18" />
-      <File FileName="Assets/Done/DoneScripts/EnemyScripts/DoneEnemyAnimation.cs" Line="42" Column="3" />
+      <File FileName="Assets/Scripts/Enemy/EnemySight.cs" Line="41" Column="16" />
+      <File FileName="Assets/Scripts/Enemy/EnemyAI.cs" Line="47" Column="1" />
+      <File FileName="Assets/Scripts/GameController/LastPlayerSighting.cs" Line="19" Column="20" />
+      <File FileName="Assets/Scripts/Player/PlayerHealth.cs" Line="51" Column="59" />
+      <File FileName="Assets/Scripts/Player/PlayerMovement.cs" Line="61" Column="45" />
+      <File FileName="Assets/Scripts/Enemy/EnemyShooting.cs" Line="58" Column="10" />
+      <File FileName="Assets/Scripts/GameController/HashIDs.cs" Line="20" Column="20" />
+      <File FileName="Assets/Scripts/LevelDynamics/DoorAnimation.cs" Line="55" Column="80" />
+      <File FileName="Assets/Scripts/LevelDynamics/LiftTrigger.cs" Line="63" Column="7" />
+      <File FileName="Assets/Scripts/Unapplied/AnimatorSetup.cs" Line="12" Column="44" />
+      <File FileName="Assets/Done/DoneScripts/EnemyScripts/DoneEnemyAnimation.cs" Line="37" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

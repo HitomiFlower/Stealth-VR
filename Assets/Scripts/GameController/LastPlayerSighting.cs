@@ -9,16 +9,17 @@ public class LastPlayerSighting : MonoBehaviour
 	public float fadeSpeed = 7f;
 	public float musicFadeSpeed = 1f;
 
+	[SerializeField]
+	private AudioSource panicAudio;
+
 	private AlarmLight alarm;
 	private Light mainLight;
-	private AudioSource panicAudio;
 	private AudioSource[] sirens;
 
 	private void Awake()
 	{
 		alarm = GameObject.FindGameObjectWithTag(Tags.alarm).GetComponent<AlarmLight>();
 		mainLight = GameObject.FindGameObjectWithTag(Tags.mainLight).GetComponent<Light>();
-		panicAudio = transform.Find("secondaryMusic").GetComponent<AudioSource>();
 		GameObject[] sirenGameObjects = GameObject.FindGameObjectsWithTag(Tags.siren);
 		sirens = new AudioSource[sirenGameObjects.Length];
 
