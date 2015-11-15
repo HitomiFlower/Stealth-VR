@@ -18,6 +18,9 @@ public class EnemyAI : MonoBehaviour
 	private float chaseTimer;
 	private int wayPointIndex;
 
+	private enum StatusCode {Patrol, Chasing, Shoot}
+	StatusCode statusCode = StatusCode.Patrol;
+
 	private void Awake()
 	{
 		enemySight = GetComponent<EnemySight>();
@@ -45,11 +48,22 @@ public class EnemyAI : MonoBehaviour
 
 	private void Shooting()
 	{
+		if (statusCode != StatusCode.Shoot)
+		{
+			statusCode = StatusCode.Shoot;
+		}
+		//Unity 4が新しいパスを設定すれば行けるけど
+		//Unity 5が元のパスをResetするかResumeするをしないといけない
 		nav.Stop();
 	}
 
 	private void Chasing()
 	{
+		if (statusCode != StatusCode.Chasing)
+		{
+			statusCode = StatusCode.Chasing;
+			nav.Resume();
+		}
 		Vector3 sightingPosDelta = enemySight.personalLastSighting - transform.position;
 		if (sightingPosDelta.sqrMagnitude > 4f)
 		{
@@ -62,7 +76,7 @@ public class EnemyAI : MonoBehaviour
 		{
 			chaseTimer += Time.deltaTime;
 
-			if (chaseTimer > chaseWaitTime)
+			if (chaseTimer >= chaseWaitTime)
 			{
 				lastPlayerSighting.position = lastPlayerSighting.resetPosition;
 				enemySight.personalLastSighting = lastPlayerSighting.resetPosition;
@@ -77,6 +91,11 @@ public class EnemyAI : MonoBehaviour
 
 	private void Patrolling()
 	{
+		if (statusCode != StatusCode.Patrol)
+		{
+			statusCode = StatusCode.Patrol;
+			nav.ResetPath();
+		}
 		nav.speed = patrolSpeed;
 
 		if (nav.destination == lastPlayerSighting.resetPosition || nav.remainingDistance < nav.stoppingDistance)

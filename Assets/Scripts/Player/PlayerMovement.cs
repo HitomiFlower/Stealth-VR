@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
 
 	private void AudioManagement(bool shout)
 	{
-		if (anim.GetCurrentAnimatorStateInfo(0).nameHash == hash.locomotionState)
+		if (anim.GetCurrentAnimatorStateInfo(0).fullPathHash == hash.locomotionState)
 		{
 			if (!GetComponent<AudioSource>().isPlaying)
 			{
