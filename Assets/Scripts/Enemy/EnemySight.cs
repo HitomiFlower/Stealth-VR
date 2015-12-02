@@ -78,11 +78,9 @@ public class EnemySight : MonoBehaviour
 
 			if (playerLayerZeroHash == hash.locomotionState || playerLayerOneHash == hash.shoutState)
 			{
-				
 				if (CalculatePathLength(player.transform.position) <= col.radius)
 				{
 					personalLastSighting = player.transform.position;
-					Debug.Log("Personal Last Sighting Updated");
 				}
 			}
 		}
